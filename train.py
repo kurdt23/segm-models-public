@@ -33,6 +33,10 @@ def main():
     parser.add_argument("-e", "--epochs", type=int, default=50, help="default=50")
     parser.add_argument("-a", "--augmentation", type=str, default="hard", help="default=hard, medium light safe")
     parser.add_argument("-w", "--workers", type=int, default=1, help="default=6")
+
+    # ОПТИМИЗАТОР
+    parser.add_argument("--optim", type=str, default="Adam", help="default=Adam, NAdam RMSprop Adadelta")
+    
     # Dirs
     parser.add_argument("-d", "--dataset", type=str, required=True, help="path where dataset is placed")
     # Если хотим взять данные из нескольких наборов, нужно собрать в .txt файл список файлов из всех папок images,
@@ -156,6 +160,7 @@ def main():
     for i in range(len(add_valid_set_list)):
         print(f"  Additional val set {i}     :", "dataset", len(valid_set))
     # print("Optimizer        :", optimizer_name)
+    print("Optimizer        :", args.optim)
 
     trainer = SegmentationTrainer(
         train_set,
@@ -173,9 +178,10 @@ def main():
         train_workers_count=int(args.workers),
         valid_workers_count=int(args.workers),
         encoder_name=args.encoder,
+        optimizer_name=args.optim,      
         device=args.device
     )
-
+# ОПТИМИЗАТОР optimizer_name
     trainer.start_training()
 
 
