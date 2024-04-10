@@ -116,9 +116,25 @@ class SegmentationTrainer:
             smp_utils.metrics.IoU(threshold=0.5),
         ]
 
-        self._optimizer = torch.optim.optimizer_name([
-            dict(params=self._model.parameters(), lr=learning_rate),
-        ])
+        # self._optimizer = torch.optim.optimizer_name([
+        #     dict(params=self._model.parameters(), lr=learning_rate),
+        # ])
+        if optimizer_name == 'Adam':
+          self._optimizer = torch.optim.Adam([
+              dict(params=self._model.parameters(), lr=learning_rate),
+          ])
+        elif optimizer_name == 'NAdam':
+          self._optimizer = torch.optim.NAdam([
+              dict(params=self._model.parameters(), lr=learning_rate),
+          ])
+        elif optimizer_name == 'Adadelta':
+          self._optimizer = torch.optim.Adadelta([
+              dict(params=self._model.parameters(), lr=learning_rate),
+          ])
+        elif optimizer_name == 'RMSprop':
+          self._optimizer = torch.optim.RMSprop([
+              dict(params=self._model.parameters(), lr=learning_rate),
+          ])
 
         self._scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(self._optimizer, self.epochs_count)
 
