@@ -25,7 +25,7 @@ class SegmentationTrainer:
             model_name='unet',
             encoder_name='efficientnet-b0',
             encoder_weights='imagenet',
-            optimizer_name='Adam'
+            optimizer_name='Adam',
             activation='sigmoid',
             device='cuda',
             epochs_count=50,
