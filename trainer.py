@@ -135,6 +135,43 @@ class SegmentationTrainer:
           self._optimizer = torch.optim.RMSprop([
               dict(params=self._model.parameters(), lr=learning_rate),
           ])
+        elif optimizer_name == 'SparseAdam':
+          self._optimizer = torch.optim.RMSprop([
+              dict(params=self._model.parameters(), lr=learning_rate),
+          ])
+        elif optimizer_name == 'AdamW':
+          self._optimizer = torch.optim.RMSprop([
+              dict(params=self._model.parameters(), lr=learning_rate),
+          ])
+        elif optimizer_name == 'RAdam':
+          self._optimizer = torch.optim.RMSprop([
+              dict(params=self._model.parameters(), lr=learning_rate),
+          ])
+        elif optimizer_name == 'Rprop':
+          self._optimizer = torch.optim.RMSprop([
+              dict(params=self._model.parameters(), lr=learning_rate),
+          ])
+        elif optimizer_name == 'SGD':
+          self._optimizer = torch.optim.RMSprop([
+              dict(params=self._model.parameters(), lr=learning_rate),
+          ])
+        elif optimizer_name == 'LBFGS':
+          self._optimizer = torch.optim.RMSprop([
+              dict(params=self._model.parameters(), lr=learning_rate),
+          ])
+        elif optimizer_name == 'ASGD':
+          self._optimizer = torch.optim.RMSprop([
+              dict(params=self._model.parameters(), lr=learning_rate),
+          ])
+        elif optimizer_name == 'Adamax':
+          self._optimizer = torch.optim.RMSprop([
+              dict(params=self._model.parameters(), lr=learning_rate),
+          ])
+        elif optimizer_name == 'Adagrad':
+          self._optimizer = torch.optim.RMSprop([
+              dict(params=self._model.parameters(), lr=learning_rate),
+          ])
+        
 
         self._scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(self._optimizer, self.epochs_count)
 
